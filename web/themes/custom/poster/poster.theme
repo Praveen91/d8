@@ -1,0 +1,27 @@
+<?php
+
+//Add Logic with THEMENAME.theme
+
+function poster_preprocess_node__movies(&$variables) {
+
+  $variables['simple_string'] = [
+      '#markup' => 'Action Movies',
+  ];
+
+}
+
+function poster_preprocess_node(&$variables) {
+  //What Are Preprocess Functions?
+  //Change Variables with Preprocess Functions
+  //Add Variables to a Template File
+
+  $variables['current_user_is_owner'] = FALSE;
+
+ if ($variables['logged_in'] == TRUE && $variables['node']->getOwnerId() == $variables['user']->id()) {
+   $variables['label']['#suffix'] = '-[you are the author]';
+   $variables['current_user_is_owner'] = TRUE;
+
+ }
+  //dump($variables);
+
+}

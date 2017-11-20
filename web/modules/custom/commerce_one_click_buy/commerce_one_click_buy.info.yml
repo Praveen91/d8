@@ -1,0 +1,4 @@
+name: One click buy
+type: module
+description: Adds a new button for quick buy action. It is one more button in addition to existing one (Add to cart button).
+core: 8.x

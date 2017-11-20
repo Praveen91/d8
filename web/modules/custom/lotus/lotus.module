@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Contains lotus.module.
+ */
+
+use Drupal\node\Entity\Node;
+
+/**
+ * Helper function to create a new node.
+ */
+function create_new_node(){
+  $node = Node::create(['type' => 'page']);
+  $node->set('title', 'New Custom page form code');
+
+  //Body can now be an array with a value and a format.
+  //If body field exists.
+  $body = [
+    'value' => 'This is my body',
+    'format' => 'basic_html',
+  ];
+  $node->set('body', $body);
+  $node->set('uid', 1);
+  $node->status = 1;
+  $node->enforceIsNew();
+  $node->save();
+  drupal_set_message("Node with nid " . $node->id() . " saved!\n");
+}

@@ -1,0 +1,14 @@
+lotus.content:
+  path: '/hello'
+  defaults:
+    _controller: \Drupal\lotus\Controller\LotusController::content
+    _title: 'Hello Drupal!'
+  requirements:
+    _permission: 'access content'
+lotus.offers_controller_hello:
+  path: '/offers/hot/{count}'
+  defaults:
+    _controller: '\Drupal\lotus\Controller\OffersController::hello'
+    _title: 'Offers'
+  requirements:
+    _permission: 'access content'

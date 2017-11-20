@@ -1,0 +1,5 @@
+name: Lotus Drupal
+description: Testing on drupal 8 work flow.
+core: 8.x
+type: module
+package: Custom

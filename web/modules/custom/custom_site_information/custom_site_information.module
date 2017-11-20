@@ -1,0 +1,39 @@
+<?php
+
+/*
+ * @file
+ * Code for alter admin Site Information form by custom module.
+*/
+function custom_site_information_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+	
+  // Adding a new form text field in this form .
+  if ($form_id == 'system_site_information_settings') {    	  
+		
+	$default_api_val = $data = \Drupal::state()->get('siteapikey') ?: t('No API Key yet');
+	
+    $form['site_information']['api_key'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Site API Key'),
+      '#default_value' => $default_api_val,      
+      '#description' => t('Site API Key'),
+    );
+    $form['actions']['submit']['#value'] = t('Update Configuration');
+    
+    // Add a custom submit handler to save the array of types back to the config file.    
+    $form['#submit'][] = '_custom_site_information_submit';
+  }
+  
+}
+
+/**
+* Form callback to save api_key
+* @param array $form
+* @param \Drupal\Core\Form\FormStateInterface $form_state
+*/
+
+ function _custom_site_information_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
+  
+  $site_api_key = $form_state->getValue('api_key');
+  \Drupal::state()->set('siteapikey', $site_api_key); 
+  drupal_set_message(t('Site API Key has been saved with @site_api!', array('@site_api' => $form_state->getValue('api_key')))); 
+ }

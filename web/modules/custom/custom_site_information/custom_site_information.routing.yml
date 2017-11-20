@@ -1,0 +1,7 @@
+custom_site_information.display:
+  path: '/page_json/{key}/{id}'
+  defaults:
+    _controller: '\Drupal\custom_site_information\Controller\SiteApiController::display'
+    _title: 'JSON Representation for a given Node'
+  requirements:
+    _permission: 'access content'
